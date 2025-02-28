@@ -351,12 +351,11 @@ public abstract class PaymentAccount implements PersistablePayload {
             formMap.putAll(payloadMap);
         }
         
-        formMap.put("accountName", getAccountName());
-        formMap.put("accountId", getId());
-        if (paymentAccountPayload != null) formMap.put("salt", getSaltAsHex());
+        jsonMap.put("accountName", getAccountName());
+        jsonMap.put("accountId", getId());
+        if (paymentAccountPayload != null) jsonMap.put("salt", getSaltAsHex());
         
-        return gson.toJson(formMap);
-
+        return gson.toJson(jsonMap);
     }
 
     /**
