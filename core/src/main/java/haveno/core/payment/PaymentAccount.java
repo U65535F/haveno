@@ -72,7 +72,6 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -351,7 +350,7 @@ public abstract class PaymentAccount implements PersistablePayload {
         jsonMap.put("accountName", getAccountName());
         jsonMap.put("accountId", getId());
         if (paymentAccountPayload != null) jsonMap.put("salt", getSaltAsHex());
-        
+
         return gson.toJson(jsonMap);
     }
 
