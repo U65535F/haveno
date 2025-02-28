@@ -346,13 +346,8 @@ public abstract class PaymentAccount implements PersistablePayload {
             .registerTypeAdapter(PaymentAccountPayload.class, new PaymentAccountTypeAdapter(this.getClass()))
             .create();
 
-        Map<String, Object> jsonMap = new HashMap<>();
-        if (paymentAccountPayload != null) {
-            String payloadJson = gson.toJson(paymentAccountPayload);
-            Map<String, Object> payloadMap = gson.fromJson(payloadJson, new TypeToken<Map<String, Object>>(){}.getType());
-            jsonMap.putAll(payloadMap);
-        }
-        
+        String payloadJson = gson.toJson(paymentAccountPayload);
+        Map<String, Object> jsonMap = gson.fromJson(payloadJson, new TypeToken<Map<String, Object>>(){}.getType());
         jsonMap.put("accountName", getAccountName());
         jsonMap.put("accountId", getId());
         if (paymentAccountPayload != null) jsonMap.put("salt", getSaltAsHex());
